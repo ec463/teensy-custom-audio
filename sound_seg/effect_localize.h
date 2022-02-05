@@ -47,10 +47,10 @@
   #define DELAY_QUEUE_SIZE  (6144 / AUDIO_BLOCK_SAMPLES)
 #endif
 
-class AudioEffectDelay : public AudioStream
+class AudioEffectLocalize : public AudioStream
 {
 public:
-	AudioEffectDelay() : AudioStream(1, inputQueueArray) {
+	AudioEffectLocalize() : AudioStream(1, inputQueueArray) {
 		activemask = 0;
 		headindex = 0;
 		tailindex = 0;

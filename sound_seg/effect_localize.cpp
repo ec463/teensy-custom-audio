@@ -27,7 +27,7 @@
 #include <Arduino.h>
 #include "effect_localize.h"
 
-void AudioEffectDelay::update(void)
+void AudioEffectLocalize::update(void)
 {
 	audio_block_t *output;
 	uint32_t head, tail, count, channel, index, prev, offset;
