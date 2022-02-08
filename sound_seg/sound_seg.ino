@@ -33,7 +33,7 @@ AudioControlSGTL5000     sgtl5000_1;     //xy=232,347
 //const int myInput = AUDIO_INPUT_MIC
 
 // Bounce objects to read pushbuttons 
-Bounce button0 = Bounce(0, 15);
+///Bounce button0 = Bounce(0, 15);
 void setup() {
   pinMode(0, INPUT_PULLUP);
   Serial.begin(9600);
@@ -46,11 +46,18 @@ void setup() {
 }
 
 void loop() {
-  
-  button0.update(); 
-  if (button0.fallingEdge()) {
-    sgtl5000_1.disable();//turn off the input when the button is pressed (it is hooked up to ground and will be pulled down).
+  if (digitalRead(0) == LOW) {
+    sgtl5000_1.volume(0);
+    Serial.println("Button is pressed!");
+  }else {
+    Serial.println("Button not pressed...");
+    sgtl5000_1.volume(0.5);
   }
+  //button0.update(); 
+  //if (button0.fallingEdge()) {
+   // sgtl5000_1.disable();//turn off the input when the button is pressed (it is hooked up to ground and will be pulled down).
+  //}
+
   
   // do nothing
 }
