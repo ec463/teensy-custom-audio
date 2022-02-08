@@ -17,6 +17,8 @@
 #include <SD.h>
 #include <SerialFlash.h>
 
+#include <Bounce.h>
+
 // GUItool: begin automatically generated code
 AudioInputI2S            i2s1;           //xy=113,131
 AudioOutputI2S           i2s2;           //xy=246,125
@@ -29,7 +31,11 @@ AudioControlSGTL5000     sgtl5000_1;     //xy=232,347
 
 //const int myInput = AUDIO_INPUT_LINEIN;
 //const int myInput = AUDIO_INPUT_MIC
+
+// Bounce objects to read pushbuttons 
+Bounce button0 = Bounce(0, 15);
 void setup() {
+  pinMode(0, INPUT_PULLUP);
   Serial.begin(9600);
   AudioMemory(256);
   sgtl5000_1.enable();
@@ -40,6 +46,11 @@ void setup() {
 }
 
 void loop() {
+  
+  button0.update(); 
+  if (button0.fallingEdge()) {
+    sgtl5000_1.disable();//turn off the input when the button is pressed (it is hooked up to ground and will be pulled down).
+  }
   
   // do nothing
 }
