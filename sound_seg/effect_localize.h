@@ -29,6 +29,7 @@
 #include "Arduino.h"
 #include "AudioStream.h"
 #include "utility/dspinst.h"
+#include "bichannel_audio_queue.h"
 
 #if defined(__IMXRT1062__)
   // 4.00 second maximum on Teensy 4.0
@@ -50,12 +51,13 @@
 class AudioEffectLocalize : public AudioStream
 {
 public:
-	AudioEffectLocalize() : AudioStream(1, inputQueueArray) {
+	AudioEffectLocalize(Bichannel_audio_queue* baq, int baq_channel) : AudioStream(1, inputQueueArray) {
 		activemask = 0;
 		headindex = 0;
 		tailindex = 0;
 		maxblocks = 0;
 		memset(queue, 0, sizeof(queue));
+    this->baq = baq;
 	}
 	void delay(uint8_t channel, float milliseconds) {
 		if (channel >= 8) return;
@@ -106,6 +108,8 @@ private:
 	uint16_t headindex;    // head index (incoming) data in quueu
 	uint16_t tailindex;    // tail index (outgoing) data from queue
 	uint16_t maxblocks;    // number of blocks needed in queue
+  Bichannel_audio_queue* baq;
+  int baq_channel;
 #if DELAY_QUEUE_SIZE * AUDIO_BLOCK_SAMPLES < 65535
 	uint16_t position[8]; // # of sample delay for each channel
 #else

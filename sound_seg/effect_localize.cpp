@@ -43,6 +43,10 @@ void AudioEffectLocalize::update(void)
 		if (++tail >= DELAY_QUEUE_SIZE) tail = 0;
 	}
 	queue[head] = receiveReadOnly();
+
+  // Take queue block and add it to bichannel_audio_queue
+  baq->update_samples(queue[head]->data, baq_channel);
+  
 	headindex = head;
 
 	// testing only.... don't allow null pointers into the queue
