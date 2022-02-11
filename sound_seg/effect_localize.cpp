@@ -45,7 +45,24 @@ void AudioEffectLocalize::update(void)
 	queue[head] = receiveReadOnly();
 
   // Take queue block and add it to bichannel_audio_queue
-  baq->update_samples(queue[head]->data, baq_channel);
+  baq -> update_samples(queue[head]->data, baq_channel);
+
+  // calculate the R value
+  float r_val = baq -> get_cross_correlation_val();
+
+  // prevent r_val from being 0
+  if (r_val < 0.001 && r_val > -0.001) {
+    r_val += 0.002;
+  }
+
+  Serial.println(r_val);
+
+  // modify original block
+  if (queue[head] != NULL) {
+    for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++) {
+      queue[head]->data[i] = queue[head]->data[i] * r_val * r_val;
+    }
+  }
   
 	headindex = head;
 

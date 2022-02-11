@@ -24,22 +24,21 @@ public:
     } else {
       memcpy(right_samples, audio_block, samples * sizeof(*right_samples));
     }
-    for (int i = 0; i < 255; i++) {
-      Serial.println(audio_block[i]);
-    }
   }
 
   // perform cross correlation on left_samples and right_samples
-  // returns the 
-  float getCrossCorrelatationVal() {
-    Correlation correlation;
-    for (int i = 0; i < 128; i++) {
-      correlation.add(left_samples[i], right_samples[i]);
+  // returns the R value
+  float get_cross_correlation_val() {
+    Correlation C;
+    
+    for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++){
+      C.add(left_samples[i], right_samples[i]);
     }
 
-    correlation.calculate();
-    float r_val = correlation.getR();
+    C.calculate();
 
+    float r_val = C.getR();
+      
     return r_val;
   }
 };

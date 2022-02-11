@@ -58,6 +58,7 @@ public:
 		maxblocks = 0;
 		memset(queue, 0, sizeof(queue));
     this->baq = baq;
+    this->baq_channel = baq_channel;
 	}
 	void delay(uint8_t channel, float milliseconds) {
 		if (channel >= 8) return;

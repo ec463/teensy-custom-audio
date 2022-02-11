@@ -44,7 +44,7 @@ void setup() {
   sgtl5000_1.micGain(20);
   localize1.delay(0, 50);
   localize2.delay(0, 50);
-  Serial.println(AUDIO_BLOCK_SAMPLES);  
+  Serial.println(AUDIO_BLOCK_SAMPLES);
 }
 
 void loop() {
