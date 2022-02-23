@@ -50,6 +50,7 @@ void AudioEffectLocalize::update(void)
 	pa = (int16_t *)(blocka->data);
 	pb = (int16_t *)(blockb->data);
 
+  // uncomment lines 55 - 62 to perform cross-correlation
   // obtain the cross-correlation value
   float r_val = get_R_val(pa, pb, AUDIO_BLOCK_SAMPLES);
   Serial.println(r_val);
@@ -60,6 +61,7 @@ void AudioEffectLocalize::update(void)
     pb[i] = pb[i] * r_val * r_val;
   }
 
+  // uncomment following line to perform minimum amplitude filtering
   isolate_minimum(pa, pb, AUDIO_BLOCK_SAMPLES);
   
 //	end = pa + AUDIO_BLOCK_SAMPLES/2;

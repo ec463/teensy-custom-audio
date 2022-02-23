@@ -8,11 +8,15 @@
 // GUItool: begin automatically generated code
 AudioInputI2S            i2s1;           //xy=211.1999969482422,235.1999969482422
 AudioEffectLocalize      localize1;       //xy=431.20001220703125,236.1999969482422
+AudioFilterLadder        ladder1;
+AudioFilterLadder        ladder2;
 AudioOutputI2S           i2s2;           //xy=841.2000122070312,228.1999969482422
-AudioConnection          patchCord1(i2s1, 0, localize1, 0);
-AudioConnection          patchCord2(i2s1, 1, localize1, 1);
-AudioConnection          patchCord3(localize1, 0, i2s2, 0);
-AudioConnection          patchCord4(localize1, 0, i2s2, 1);
+AudioConnection          patchCord1(i2s1, 0, ladder1, 0);
+AudioConnection          patchCord2(i2s1, 1, ladder2, 0);
+AudioConnection          patchCord3(ladder1, 0, localize1, 0);
+AudioConnection          patchCord4(ladder2, 0, localize1, 1);
+AudioConnection          patchCord5(localize1, 0, i2s2, 0);
+AudioConnection          patchCord6(localize1, 0, i2s2, 1);
 AudioControlSGTL5000     sgtl5000_1;     //xy=232,347
 // GUItool: end automatically generated code
 
