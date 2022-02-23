@@ -29,95 +29,14 @@
 #include "Arduino.h"
 #include "AudioStream.h"
 #include "utility/dspinst.h"
-#include "bichannel_audio_queue.h"
-
-#if defined(__IMXRT1062__)
-  // 4.00 second maximum on Teensy 4.0
-  #define DELAY_QUEUE_SIZE  (176512 / AUDIO_BLOCK_SAMPLES)
-#elif defined(__MK66FX1M0__)
-  // 2.41 second maximum on Teensy 3.6
-  #define DELAY_QUEUE_SIZE  (106496 / AUDIO_BLOCK_SAMPLES)
-#elif defined(__MK64FX512__)
-  // 1.67 second maximum on Teensy 3.5
-  #define DELAY_QUEUE_SIZE  (73728 / AUDIO_BLOCK_SAMPLES)
-#elif defined(__MK20DX256__)
-  // 0.45 second maximum on Teensy 3.1 & 3.2
-  #define DELAY_QUEUE_SIZE  (19826 / AUDIO_BLOCK_SAMPLES)
-#else
-  // 0.14 second maximum on Teensy 3.0
-  #define DELAY_QUEUE_SIZE  (6144 / AUDIO_BLOCK_SAMPLES)
-#endif
 
 class AudioEffectLocalize : public AudioStream
 {
 public:
-	AudioEffectLocalize(Bichannel_audio_queue* baq, int baq_channel) : AudioStream(1, inputQueueArray) {
-		activemask = 0;
-		headindex = 0;
-		tailindex = 0;
-		maxblocks = 0;
-		memset(queue, 0, sizeof(queue));
-    this->baq = baq;
-    this->baq_channel = baq_channel;
-	}
-	void delay(uint8_t channel, float milliseconds) {
-		if (channel >= 8) return;
-		if (milliseconds < 0.0f) milliseconds = 0.0f;
-		uint32_t n = (milliseconds*(AUDIO_SAMPLE_RATE_EXACT/1000.0f))+0.5f;
-		uint32_t nmax = AUDIO_BLOCK_SAMPLES * (DELAY_QUEUE_SIZE-1);
-		if (n > nmax) n = nmax;
-		uint32_t blks = (n + (AUDIO_BLOCK_SAMPLES-1)) / AUDIO_BLOCK_SAMPLES + 1;
-		if (!(activemask & (1<<channel))) {
-			// enabling a previously disabled channel
-			position[channel] = n;
-			if (blks > maxblocks) maxblocks = blks;
-			activemask |= (1<<channel);
-		} else {
-			if (n > position[channel]) {
-				// new delay is greater than previous setting
-				if (blks > maxblocks) maxblocks = blks;
-				position[channel] = n;
-			} else {
-				// new delay is less than previous setting
-				position[channel] = n;
-				recompute_maxblocks();
-			}
-		}
-	}
-	void disable(uint8_t channel) {
-		if (channel >= 8) return;
-		// diable this channel
-		activemask &= ~(1<<channel);
-		// recompute maxblocks for remaining enabled channels
-		recompute_maxblocks();
-	}
+	AudioEffectLocalize() : AudioStream(2, inputQueueArray) { }
 	virtual void update(void);
 private:
-	void recompute_maxblocks(void) {
-		uint32_t max=0;
-		uint32_t channel = 0;
-		do {
-			if (activemask & (1<<channel)) {
-				uint32_t n = position[channel];
-				n = (n + (AUDIO_BLOCK_SAMPLES-1)) / AUDIO_BLOCK_SAMPLES + 1;
-				if (n > max) max = n;
-			}
-		} while(++channel < 8);
-		maxblocks = max;
-	}
-	uint8_t activemask;   // which output channels are active
-	uint16_t headindex;    // head index (incoming) data in quueu
-	uint16_t tailindex;    // tail index (outgoing) data from queue
-	uint16_t maxblocks;    // number of blocks needed in queue
-  Bichannel_audio_queue* baq;
-  int baq_channel;
-#if DELAY_QUEUE_SIZE * AUDIO_BLOCK_SAMPLES < 65535
-	uint16_t position[8]; // # of sample delay for each channel
-#else
-	uint32_t position[8]; // # of sample delay for each channel
-#endif
-	audio_block_t *queue[DELAY_QUEUE_SIZE];
-	audio_block_t *inputQueueArray[1];
+	audio_block_t *inputQueueArray[2];
 };
 
 #endif
