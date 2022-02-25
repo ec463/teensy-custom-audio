@@ -5,6 +5,8 @@
 #include <SerialFlash.h>
 #include "effect_localize.h"
 
+#include <Bounce.h>
+
 // GUItool: begin automatically generated code
 AudioInputI2S            i2s1;           //xy=211.1999969482422,235.1999969482422
 AudioEffectLocalize      localize1;       //xy=431.20001220703125,236.1999969482422
@@ -22,7 +24,9 @@ AudioControlSGTL5000     sgtl5000_1;     //xy=232,347
 
 //const int myInput = AUDIO_INPUT_LINEIN;
 //const int myInput = AUDIO_INPUT_MIC
+
 void setup() {
+  pinMode(0, INPUT_PULLUP);
   Serial.begin(9600);
   AudioMemory(512);
   sgtl5000_1.enable();
@@ -32,5 +36,15 @@ void setup() {
 }
 
 void loop() {
-
+  if (digitalRead(0) == LOW) {
+    sgtl5000_1.volume(0);
+    Serial.println("Button is pressed!");
+  }else {
+    Serial.println("Button not pressed...");
+    sgtl5000_1.volume(0.5);
+  }
+  //button0.update(); 
+  //if (button0.fallingEdge()) {
+   // sgtl5000_1.disable();//turn off the input when the button is pressed (it is hooked up to ground and will be pulled down).
+  //}
 }
