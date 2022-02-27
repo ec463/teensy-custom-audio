@@ -14,3 +14,14 @@ In order for the entire device to work, the following hardware is needed:
  - 2 MAX4466 Electret Microphones
  - Either USB or 5V external battery
  - Earbuds or Headphones
+
+# Circuit Schematic
+<p align="center">
+   <img src="https://github.com/liben002/perpetual-motion-machine-detector/blob/master/resources/schematics/schematic_v1.0.png" alt="schematic"/>
+</p>
+
+# PCB Layout
+## Circuit Schematic
+<p align="center">
+   <img src="https://github.com/liben002/perpetual-motion-machine-detector/blob/master/resources/schematics/schematic_v1.0.png" alt="schematic"/>
+</p>
