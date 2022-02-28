@@ -21,7 +21,6 @@ In order for the entire device to work, the following hardware is needed:
 </p>
 
 # PCB Layout
-## Circuit Schematic
 <p align="center">
    <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/overear_pcb.png" alt="schematic"/>
 </p>
