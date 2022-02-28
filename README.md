@@ -17,11 +17,11 @@ In order for the entire device to work, the following hardware is needed:
 
 # Circuit Schematic
 <p align="center">
-   <img src="https://github.com/liben002/perpetual-motion-machine-detector/blob/master/resources/schematics/schematic_v1.0.png" alt="schematic"/>
+   <img src="https://github.com/ec463/teensy-custom-audio/tree/master/resources/overear_circuit.png" alt="schematic"/>
 </p>
 
 # PCB Layout
 ## Circuit Schematic
 <p align="center">
-   <img src="https://github.com/liben002/perpetual-motion-machine-detector/blob/master/resources/schematics/schematic_v1.0.png" alt="schematic"/>
+   <img src="https://github.com/ec463/teensy-custom-audio/tree/master/resources/overear_pcb.png" alt="schematic"/>
 </p>
