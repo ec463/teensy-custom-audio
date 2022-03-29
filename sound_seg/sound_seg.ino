@@ -25,6 +25,18 @@ AudioControlSGTL5000     sgtl5000_1;     //xy=232,347
 //const int myInput = AUDIO_INPUT_LINEIN;
 //const int myInput = AUDIO_INPUT_MIC
 
+//Bounce objects to read pushbuttons
+Bounce button0 = Bounce(0, 15);
+
+#define CLK 37
+#define DT  38
+
+int counter = 0;
+int currentStateCLK;
+int lastStateCLK;
+String currentDir ="";
+unsigned long lastButtonPress = 0;
+
 void setup() {
   pinMode(0, INPUT_PULLUP);
   Serial.begin(9600);
@@ -33,18 +45,93 @@ void setup() {
   sgtl5000_1.volume(0.5);
   sgtl5000_1.inputSelect(AUDIO_INPUT_LINEIN);
   sgtl5000_1.micGain(40);
+  sgtl5000_1.dacVolumeRamp();
+  sgtl5000_1.dacVolumeRampDisable();
+
+  //localize1.delay(0, 125);
+
+  pinMode(CLK,INPUT);
+  pinMode(DT,INPUT);
+  //pinMode(SW, INPUT_PULLUP);
+  lastStateCLK = digitalRead(CLK);  
 }
 
 void loop() {
   if (digitalRead(0) == LOW) {
+    sgtl5000_1.dacVolumeRampDisable();
     sgtl5000_1.volume(0);
-    Serial.println("Button is pressed!");
+    //Serial.println("Button is pressed!");
   }else {
-    Serial.println("Button not pressed...");
+    //Serial.println("Button not pressed...");
+    sgtl5000_1.dacVolumeRamp();
     sgtl5000_1.volume(0.5);
   }
-  //button0.update(); 
-  //if (button0.fallingEdge()) {
-   // sgtl5000_1.disable();//turn off the input when the button is pressed (it is hooked up to ground and will be pulled down).
+  button0.update(); 
+  if (button0.fallingEdge()) {
+    sgtl5000_1.disable();//turn off the input when the button is pressed (it is hooked up to ground and will be pulled down).
+  }
+ // do nothing
+
+    // Read the current state of CLK
+  currentStateCLK = digitalRead(CLK);
+  //Serial.print(currentStateCLK);
+  //Serial.print(digitalRead(DT));
+  // If last and current state of CLK are different, then pulse occurred
+  // React to only 1 state change to avoid double count
+  if (currentStateCLK != lastStateCLK  && currentStateCLK == 1){
+
+    // If the DT state is different than the CLK state then
+    // the encoder is rotating CCW so decrement
+    int P = digitalRead(DT);
+    if (P!= currentStateCLK) {
+      //if (counter > 0) {
+       // counter = counter - 100;
+       counter --;
+     // }
+      currentDir ="CCW";
+      Serial.println("CCW");
+      Serial.println(counter);
+       
+    } else {
+      // Encoder is rotating CW so increment
+      //if (counter < 1024) {
+        //counter = counter + 100;
+        counter ++;
+     // }
+      currentDir ="CW";
+      Serial.println("CW");
+      Serial.println(counter);
+    }
+    Serial.print(digitalRead(DT));
+    //Serial.print("Direction: ");
+    //Serial.print(currentDir);
+    //Serial.print(" | Counter: ");
+    //Serial.println(counter);
+  }
+
+  // Remember last CLK state
+  lastStateCLK = currentStateCLK;
+  
+  //Serial.print("analog is: ");
+  float atten = counter/1024.0;
+  //Serial.println(counter);
+  sgtl5000_1.volume(atten);
+  
+  // Read the button state
+ // int btnState = digitalRead(SW);
+
+  //If we detect LOW signal, button is pressed
+  //if (btnState == LOW) {
+    //if 50ms have passed since last LOW pulse, it means that the
+    //button has been pressed, released and pressed again
+   // if (millis() - lastButtonPress > 50) {
+    //  Serial.println("Button pressed!");
+   // }
+
+    // Remember last button press event
+   // lastButtonPress = millis();
   //}
+
+  // Put in a slight delay to help debounce the reading
+  delay(1);
 }
