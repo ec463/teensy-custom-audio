@@ -60,9 +60,9 @@ void loop() {
   if (digitalRead(0) == LOW) {
     sgtl5000_1.dacVolumeRampDisable();
     sgtl5000_1.volume(0);
-    Serial.println("Button is pressed!");
+    //Serial.println("Button is pressed!");
   }else {
-    Serial.println("Button not pressed...");
+   // Serial.println("Button not pressed...");
     sgtl5000_1.dacVolumeRamp();
     sgtl5000_1.volume(0.5);
   }
@@ -83,12 +83,20 @@ void loop() {
     // If the DT state is different than the CLK state then
     // the encoder is rotating CCW so decrement
     if (digitalRead(DT) != currentStateCLK) {
-      counter --;
+      if (counter > 0) {
+      counter = counter - 1;
+      }
       currentDir ="CCW";
+      Serial.println(counter/13.0);
+      Serial.println("CCW");
     } else {
       // Encoder is rotating CW so increment
-      counter ++;
+      if (counter < 13){
+      counter = counter + 1;
+      }
       currentDir ="CW";
+      Serial.println(counter/13.0);
+      Serial.println("CW");
     }
     //Serial.print(digitalRead(DT));
     //Serial.print("Direction: ");
@@ -101,9 +109,9 @@ void loop() {
   lastStateCLK = currentStateCLK;
   
   //Serial.print("analog is: ");
-  float atten = counter/1024.0;
+  float atten = counter/13.0;
   sgtl5000_1.volume(atten);
-  Serial.println(atten);
+ // Serial.println(atten);
 
   // Read the button state
  // int btnState = digitalRead(SW);
