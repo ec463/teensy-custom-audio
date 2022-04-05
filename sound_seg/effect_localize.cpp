@@ -52,7 +52,7 @@ void AudioEffectLocalize::update(void)
   // uncomment lines 55 - 62 to perform cross-correlation
   // obtain the cross-correlation value
   float r_val = get_R_val(pa, pb, AUDIO_BLOCK_SAMPLES);
-//  Serial.println(r_val);
+  //Serial.println(r_val);
 
   // modify original sound blocks
   for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++) {
@@ -64,15 +64,15 @@ void AudioEffectLocalize::update(void)
   isolate_minimum(pa, pb, AUDIO_BLOCK_SAMPLES);
 
   // DEBUGGING
-//  for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++) {
-//    if (i % 16 == 0) {
+  for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++) {
+    if (i % 16 == 0) {
 //    Serial.print(-1000); // To freeze the lower limit
 //    Serial.print(" ");
 //    Serial.print(1000); // To freeze the upper limit
 //    Serial.print(" Value: ");
-//    Serial.println(pa[i]);
-//    }
-//  }
+    Serial.println(pa[i]);
+    }
+  }
   
 	transmit(blocka);
 	release(blocka);
