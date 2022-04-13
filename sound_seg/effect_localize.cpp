@@ -28,12 +28,10 @@
 #include "effect_localize.h"
 #include "xcorr.h"
 
-void AudioEffectLocalize::update(void)
-{
+void AudioEffectLocalize::update(void) {
 #if defined(__ARM_ARCH_7EM__) // Teensy 3.5
 	audio_block_t *blocka, *blockb;
 	int16_t *pa, *pb;
-	uint32_t *end;
 //	uint32_t a12, a34; //, a56, a78;
 //	uint32_t b12, b34; //, b56, b78;
 
@@ -50,47 +48,25 @@ void AudioEffectLocalize::update(void)
 	pa = (int16_t *)(blocka->data);
 	pb = (int16_t *)(blockb->data);
 
-  // uncomment lines 55 - 62 to perform cross-correlation
-  // obtain the cross-correlation value
-  float r_val = get_R_val(pa, pb, AUDIO_BLOCK_SAMPLES);
-  //Serial.println(r_val);
+	// uncomment lines 55 - 64 to perform cross-correlation
 
-  // modify original sound blocks
-  for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++) {
-    pa[i] = pa[i] * r_val * r_val;
-    pb[i] = pb[i] * r_val * r_val;
-  }
+	// obtain the cross-correlation value
+	float r_val = get_R_val(pa, pb, AUDIO_BLOCK_SAMPLES);
 
-  // uncomment following line to perform minimum amplitude filtering
-  isolate_minimum(pa, pb, AUDIO_BLOCK_SAMPLES);
-  
-//	end = pa + AUDIO_BLOCK_SAMPLES/2;
-//	while (pa < end) {
-//		a12 = *pa;
-//		a34 = *(pa+1);
-//		//a56 = *(pa+2); // 8 samples/loop should work, but crashes.
-//		//a78 = *(pa+3); // why?!  maybe a compiler bug??
-//		b12 = *pb++;
-//		b34 = *pb++;
-//		//b56 = *pb++;
-//		//b78 = *pb++;
-//		a12 = pack_16b_16b(
-//			signed_saturate_rshift(multiply_16tx16t(a12, b12), 16, 15), 
-//			signed_saturate_rshift(multiply_16bx16b(a12, b12), 16, 15));
-//		a34 = pack_16b_16b(
-//			signed_saturate_rshift(multiply_16tx16t(a34, b34), 16, 15), 
-//			signed_saturate_rshift(multiply_16bx16b(a34, b34), 16, 15));
-//		//a56 = pack_16b_16b(
-//		//	signed_saturate_rshift(multiply_16tx16t(a56, b56), 16, 15), 
-//		//	signed_saturate_rshift(multiply_16bx16b(a56, b56), 16, 15));
-//		//a78 = pack_16b_16b(
-//		//	signed_saturate_rshift(multiply_16tx16t(a78, b78), 16, 15), 
-//		//	signed_saturate_rshift(multiply_16bx16b(a78, b78), 16, 15));
-//		*pa++ = a12;
-//		*pa++ = a34;
-//		//*pa++ = a56;
-//		//*pa++ = a78;
-//	}
+	// modify original sound blocks
+	for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++) {
+	pa[i] = pa[i] * r_val * r_val;
+	pb[i] = pb[i] * r_val * r_val;
+	// Serial.print(5000);
+	// Serial.print(" ");
+	// Serial.print(-5000);
+	// Serial.print(" ");
+	// Serial.println(pb[i]);
+	}
+
+	// uncomment following line to perform minimum amplitude filtering
+	isolate_minimum(pa, pb, AUDIO_BLOCK_SAMPLES);
+
 	transmit(blocka);
 	release(blocka);
 	release(blockb);
