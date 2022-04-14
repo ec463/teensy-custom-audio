@@ -1,0 +1,3 @@
+Amplitude values from speech taken at three different angles.
+From top to bottom: -90 degrees, 0 degrees, 90 degrees
+Higher amplitude is louder

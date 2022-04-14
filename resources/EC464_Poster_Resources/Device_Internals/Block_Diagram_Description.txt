@@ -1,0 +1,2 @@
+OverEar has three main features: dual microphone input, the processing unit, and earbud output.
+This processor has been set up to perform sound segregation on the input using a low-frequency filter, amplitude minimization, and cross-correlation amplification.

@@ -1,0 +1,1 @@
+Lower decibal ranges at side angles compared to in front of user.

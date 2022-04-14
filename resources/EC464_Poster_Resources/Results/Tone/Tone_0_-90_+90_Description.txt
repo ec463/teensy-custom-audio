@@ -1,0 +1,3 @@
+Amplitude values using a 440 Hz tone at three different angles.
+From top to bottom: -90 degrees, 0 degrees, 90 degrees.
+Higher amplitude is louder.

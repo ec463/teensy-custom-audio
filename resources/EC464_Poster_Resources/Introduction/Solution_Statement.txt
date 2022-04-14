@@ -1,0 +1,3 @@
+OverEar takes a signal-processing approach to sound segregation and aims to limit and localize noise robustly and effectively.
+Words spoken in a noisy environment will become localized such that the sounds coming from directly in front of the user (0 degrees) are amplified while sound coming from other degrees are attenuated.
+OverEar is a portable and real-time solution to the Cocktail Party Problem and uses off-the-shelf parts to create an end dive.

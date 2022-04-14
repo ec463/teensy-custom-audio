@@ -1,0 +1,2 @@
+Internal circuit diagram and PCB layout for the OverEar device.
+Designed to keep the device small and portable

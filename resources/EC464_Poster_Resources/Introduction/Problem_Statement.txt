@@ -1,0 +1,3 @@
+The Cocktail Party Problem is a phenomenom where certain people, due to a hearing or neurological impairment, are not able to focus their attention on a stimulus while filtering out other distracting sounds, especially in the context of conversation in a room filled with chatter. 
+Current solutions on the market are expensive, do not perform sound-separation, or use an array of microphones.
+An inexpensive and more accessible device is necessary to fill this need.

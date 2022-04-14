@@ -1,0 +1,3 @@
+Volume Knob for adjusting output volume
+Mute button to stop processing when user is speaking
+Mini-USB charging built-in

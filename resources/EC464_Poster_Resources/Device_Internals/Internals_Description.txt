@@ -1,0 +1,1 @@
+OverEar consists of a custom-manufactured PCB, two electret microphones, I/O electronics, a Li-Po battery, a Teensy 3.5 microcontroller, and a Teensy audio shield.
