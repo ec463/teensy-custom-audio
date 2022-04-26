@@ -55,13 +55,13 @@ void AudioEffectLocalize::update(void) {
 
 	// modify original sound blocks
 	for (int i = 0; i < AUDIO_BLOCK_SAMPLES; i++) {
-	pa[i] = pa[i] * r_val * r_val;
-	pb[i] = pb[i] * r_val * r_val;
-	// Serial.print(5000);
-	// Serial.print(" ");
-	// Serial.print(-5000);
-	// Serial.print(" ");
-	// Serial.println(pb[i]);
+  	pa[i] = pa[i] * r_val * r_val;
+  	pb[i] = pb[i] * r_val * r_val;
+//    Serial.print(5000);
+//    Serial.print(" ");
+//    Serial.print(-5000);
+//    Serial.print(" ");
+//    Serial.println(pb[i]);
 	}
 
 	// uncomment following line to perform minimum amplitude filtering
