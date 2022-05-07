@@ -22,10 +22,10 @@ In order for the entire device to work, the following hardware is needed:
 
 # Circuit Schematic
 <p align="center">
-   <img src="https://github.com/ec463/teensy-custom-audio/blob/ben-submission/resources/schematic/overear_schematic.pdf" alt="schematic"/>
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/ben-submission/resources/schematic/overear_schematic.png" alt="schematic"/>
 </p>
 
 # PCB Layout
 <p align="center">
-   <img src="https://github.com/ec463/teensy-custom-audio/blob/ben-submission/resources/pcb/overear_pcb.pdf" alt="PCB"/>
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/ben-submission/resources/pcb/overear_pcb.png" alt="PCB"/>
 </p>
