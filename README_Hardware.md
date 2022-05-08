@@ -18,21 +18,23 @@ Second, the issue could be due to a microphone malfunction, occurring if the use
 
 # Set Up
 The hardware setup requires attaching the Teensy microcontroller to the audio shield through a series of pins, much like any other Arduino shield. The microphones will be connected to the respective ADC pins on the audio shield to receive the input signals and the earbuds will be connected to the 3.5mm jack on the audio shield for output. The audio shield uses the I2S interface to control the ADC and DAC connections. The software includes the self-developed sound-segregation algorithm which is in charge of processing the incoming noise signals. The code for the algorithm will already be pre-loaded onto the Teensy device. The general test will be to speak to the user in 3 different angles: first in front of the user at 0 degree, then at 90 degree offsets (directly left or directly right) and observe the attenuation of the output. The sound processing is almost immediate and will be relayed through the earbuds as live audio. 
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/setup.png" alt="schematic"/>
+</p>
+Figure 1: Set up and process flow visual
 
 # Setup Procedure
 - Push the sound segregation algorithm code to the Teensy microcontroller.
 - Plug in earbuds via audiojack.
 - Clip the earbuds to the microphones on both left and right side.
 - Flip the On/Off switch to the On position to start the OverEar device.
-<p align="center">
-   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/setup.png" alt="schematic"/>
-</p>
-Figure 1: Set up and process flow visual
+
 # Bill of materials used for this project:
 <p align="center">
    <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/bom.png" alt="schematic"/>
 </p>
 Table 1: Bill of Materials
+
 # Equipment Description
 
 - Teensy v3.5 Microcontroller 
