@@ -33,7 +33,7 @@ The sound-segregation algorithm can be broken down into three distinct steps: a 
 
 The newly written sound-segregation code is housed in the ```effect_localize``` ```.h``` and ```.cpp``` files. These files were written to be compatible with the other Teensy audio effects and thus follow their coding style. Any new effects or modifications should also be made accordingly.
 
-```effect localize.cpp``` uses two library functions to perform sound-segregation. These are ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples)```, which obtains the correlation coefficient of an audio sample, and ```void isolate_minimumm(int16_t *left_samples, int16_t *right_samples, int samples)```, which equalizes the output of the processed sound.
+```effect localize.cpp``` uses two library functions to perform sound-segregation. These are ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples)```, which obtains the correlation coefficient of an audio sample, and ```void isolate_minimum(int16_t *left_samples, int16_t *right_samples, int samples)```, which equalizes the output of the processed sound.
 
 This codebase is currently being ported to Python so that it can be compatible with Raspberry Pi models as well. A public repository with that code will be linked here in the future.
 
