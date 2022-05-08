@@ -35,8 +35,8 @@ Figure 1: Block diagram reflecting the processing functions and the file structu
 		- ```AudioEffectLocalize()```: 
 			- The sound localization function. Takes a packet of sound data and calculates the correlation coefficient with ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples``` and multiplies each value with R squared. It then applies the absolute minimum function.
 		- ```xcorr.h```
-			- ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples)```: The cross correlation function. Determines the cross correlation coefficient between the left and right samples for one packet. The cross correlation coefficient increases the more similar the left and right packets are to each other and approaches zero otherwise. They only become similar if the sound values in the packet mathematically have the similar values at the same index within the packet. Thus sound sources from the 0th azimuth will cause the cross correlation coefficient to increase. 
-			- ```void isolate_minimum(int16_t *left_samples, int16_t *right_samples, int samples)```: The isolated minimum function. Determines the absolute minimum value between the left and right of each sample. As sound gets picked up by the left and right microphones, sources emitting from the 0th azimuth (directly in front of the user) contribute equally amplitude. As the source moves from away from the center, a bias towards one microphone occurs. This module is meant to help cut away everything except what comes from the 0th azimuth. 
+			- ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples)```: The cross correlation function. Determines the cross correlation coefficient between the left and right samples for one packet. The cross correlation coefficient increases the more similar the left and right packets are to each other and approaches zero otherwise. They only become similar if the sound values in the packet mathematically have similar values at the similar index within the packet. Thus sound sources from the 0th azimuth will cause the cross correlation coefficient to increase. 
+			- ```void isolate_minimum(int16_t *left_samples, int16_t *right_samples, int samples)```: The isolated minimum function. Determines the absolute minimum value between the left and right of each sample. As sound gets picked up by the left and right microphones, sources emitting from the 0th azimuth (directly in front of the user) contribute equally amplitude. As the source moves away from the center, a bias toward one microphone occurs. This module is meant to help cut away everything except what comes from the 0th azimuth. 
 
 
 # Developer/Build Tool Information
@@ -71,7 +71,7 @@ To change the sampling rate of the device:
 	-```/c/Program Files (x86)/Arduino/hardware/teensy/avr/cores/teensy3 ```
 	- AUDIO_SAMPLE_RATE_EXACT: The number of samples taken per second 
 	- AUDIO_BLOCK_SAMPLES: The number of samples packaged together as a block
-	
+
 https://www.pjrc.com/teensy/gui/ 
 
 This website is useful for visualizing the flow of audio signals in a Teensy due to the Audio System Design Tool. It allows the user to choose options such as an input, output, mixer, effects/filters, and modes of analysis. If one clicks the “Export” button, they are able to generate code based on the block diagram they created. For our project, we use an input of I2S, a modified delay (which contains our algorithm), SGTL5000 control and an I2S output. 
