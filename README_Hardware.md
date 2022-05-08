@@ -20,33 +20,33 @@ Second, the issue could be due to a microphone malfunction, occurring if the use
 The hardware setup requires attaching the Teensy microcontroller to the audio shield through a series of pins, much like any other Arduino shield. The microphones will be connected to the respective ADC pins on the audio shield to receive the input signals and the earbuds will be connected to the 3.5mm jack on the audio shield for output. The audio shield uses the I2S interface to control the ADC and DAC connections. The software includes the self-developed sound-segregation algorithm which is in charge of processing the incoming noise signals. The code for the algorithm will already be pre-loaded onto the Teensy device. The general test will be to speak to the user in 3 different angles: first in front of the user at 0 degree, then at 90 degree offsets (directly left or directly right) and observe the attenuation of the output. The sound processing is almost immediate and will be relayed through the earbuds as live audio. 
 
 # Setup Procedure
--Push the sound segregation algorithm code to the Teensy microcontroller.
--Plug in earbuds via audiojack.
--Clip the earbuds to the microphones on both left and right side.
--Flip the On/Off switch to the On position to start the OverEar device.
+- Push the sound segregation algorithm code to the Teensy microcontroller.
+- Plug in earbuds via audiojack.
+- Clip the earbuds to the microphones on both left and right side.
+- Flip the On/Off switch to the On position to start the OverEar device.
 
 # Bill of materials used for this project:
 
 # Equipment Description
 
--Teensy v3.5 Microcontroller 
-  -Used to run the sound-segregation algorithm as well as process the input signals and output them.
--PCB
-  -Custom design used to house the various electronic components and ensure a solid connection.
--Teensy Audio Shield
-  -Hardware interface to simplify sound I/O connections to the Teensy microcontroller.
--MAX4466 Electret Microphone Amplifier
-  -Used to record incoming bi-channel audio and provide pre-processing amplification
--Earbuds/Headphones
-  -Used to output processed sound to the user and should have an audio jack to interface with the OverEar device.
--On/Off Switch
-  -Used to turn the device on and off.
--Pushbutton Switch
-  -Used as the self-mute button to stop audio processing when the user is talking.
--Rotary Encoder
-  -Used to adjust the output volume depending on the scenario where the device is used.
--1800 mAh Li-Po Battery & Adafruit Battery Management System
-  -Used to power the device and allow for USB recharging through Mini USB.
+- Teensy v3.5 Microcontroller 
+  - Used to run the sound-segregation algorithm as well as process the input signals and output them.
+- PCB
+  - Custom design used to house the various electronic components and ensure a solid connection.
+- Teensy Audio Shield
+  - Hardware interface to simplify sound I/O connections to the Teensy microcontroller.
+- MAX4466 Electret Microphone Amplifier
+  - Used to record incoming bi-channel audio and provide pre-processing amplification
+- Earbuds/Headphones
+  - Used to output processed sound to the user and should have an audio jack to interface with the OverEar device.
+- On/Off Switch
+  - Used to turn the device on and off.
+- Pushbutton Switch
+  - Used as the self-mute button to stop audio processing when the user is talking.
+- Rotary Encoder
+  - Used to adjust the output volume depending on the scenario where the device is used.
+- 1800 mAh Li-Po Battery & Adafruit Battery Management System
+  - Used to power the device and allow for USB recharging through Mini USB.
 
 
 
