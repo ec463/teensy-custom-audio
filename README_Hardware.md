@@ -48,6 +48,28 @@ The hardware setup requires attaching the Teensy microcontroller to the audio sh
 - 1800 mAh Li-Po Battery & Adafruit Battery Management System
   - Used to power the device and allow for USB recharging through Mini USB.
 
+# Power specifications
+Measurement of the Overear device produced an average electrical usage of 65 milliamps at 3.7 volts, for a total power consumption of 242 milliwatts. Accordingly, we settled on a 1800 mAh Lithium-Polymer battery, which connects to the device using terminal screws. This produces 28 hours of battery power. 
+
+# Schematic & Diagrams 
+# System Enclosure 
+Assembly process:
+
+1. Solder the Teensy controller to the custom PCB and attach the Audio shield. The order of components from bottom to top is PCB, Teensy, and Audio shield.
+2. Solder the wires of the button and volume controller to their respective pins. 
+3. Solder wires to the microphone. Then put the wire through the braided cord protector. Once both microphones are shelved then put the cable through the correct hole in the Main case.
+  1. Take the microphone wires and solder them to the Teensy pins.
+4. Solder 2 short wires to the PCB and push them from inside out of the Main case to solder the switch. 
+  1. After the switch is soldered to the PCB then push it inside the hole of the Main case. 
+5. Solder the power adapter to the PCB.
+6. After all electronic components are soldered to their respective pins, start organizing the elements inside the case. 
+  1. The order should be: from bottom to top it is the PCB, Teensy, audio shield, power adapter, and battery pack. To the sides should be a switch and button and the other side should be the volume controller.
+  2. Use a glue gun to immobilize the components inside the Main Case or use super glue for a more effective option.
+  3. Use super glue to connect the belt clip to the back of the Main case so the user can wear the device comfortably.
+7. Finally cover the Main Case with its cover and case the microphones. After all electronic components have been assembled and the software uploaded to the Teensy, the user should be able to use the OverEar device right away. 
+
+
+
 
 
 
