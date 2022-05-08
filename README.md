@@ -5,17 +5,12 @@
 This repository contains the code necessary to run the sound-segregation algorithm on the Teensy 3.5 microcontroller. While this code has been written to be easily adaptable to the modern Teensy microcontrollers, they have not been tested. In general, very few things need to be changed such as pin values for the various electronics.
 
 # EC464 Deliverables Locations
-Engineering README
- - ```https://github.com/ec463/teensy-custom-audio/blob/master/README.md```
- Hardware Report
- - ```https://github.com/ec463/teensy-custom-audio/blob/master/README_Hardware.md```
-Software Report
- - ```https://github.com/ec463/teensy-custom-audio/blob/master/README_Software.md```
-Copy of Previous Reports
- - ```https://github.com/ec463/teensy-custom-audio/blob/master/reports```
-Schematic and PCB Designs
- - ```https://github.com/ec463/teensy-custom-audio/blob/master/resources/schematic```
- - ```https://github.com/ec463/teensy-custom-audio/blob/master/resources/pcb```
+ - Engineering README ```https://github.com/ec463/teensy-custom-audio/blob/master/README.md```
+ - Hardware Report ```https://github.com/ec463/teensy-custom-audio/blob/master/README_Hardware.md```
+ - Software Report ```https://github.com/ec463/teensy-custom-audio/blob/master/README_Software.md```
+ - Copy of Previous Reports ```https://github.com/ec463/teensy-custom-audio/blob/master/reports```
+ - Schematic ```https://github.com/ec463/teensy-custom-audio/blob/master/resources/schematic```
+ - PCB Design ```https://github.com/ec463/teensy-custom-audio/blob/master/resources/pcb```
 
 # Getting Started
 
