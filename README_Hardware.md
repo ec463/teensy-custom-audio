@@ -24,9 +24,15 @@ The hardware setup requires attaching the Teensy microcontroller to the audio sh
 - Plug in earbuds via audiojack.
 - Clip the earbuds to the microphones on both left and right side.
 - Flip the On/Off switch to the On position to start the OverEar device.
-
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/setup.png" alt="schematic"/>
+</p>
+Figure 1: Set up and process flow visual
 # Bill of materials used for this project:
-
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/bom.png" alt="schematic"/>
+</p>
+Table 1: Bill of Materials
 # Equipment Description
 
 - Teensy v3.5 Microcontroller 
