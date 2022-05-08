@@ -8,7 +8,7 @@ This repository contains the code necessary to run the sound-segregation algorit
  - Engineering README ```https://github.com/ec463/teensy-custom-audio/blob/master/README.md```
  - Hardware Report ```https://github.com/ec463/teensy-custom-audio/blob/master/README_Hardware.md```
  - Software Report ```https://github.com/ec463/teensy-custom-audio/blob/master/README_Software.md```
- - Copy of Previous Reports ```https://github.com/ec463/teensy-custom-audio/blob/master/reports```
+ - Copy of Previous Reports ```https://github.com/ec463/teensy-custom-audio/tree/master/resources/Previous%20Reports```
  - Schematic ```https://github.com/ec463/teensy-custom-audio/blob/master/resources/schematic```
  - PCB Design ```https://github.com/ec463/teensy-custom-audio/blob/master/resources/pcb```
 
