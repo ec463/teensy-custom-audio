@@ -52,6 +52,41 @@ The hardware setup requires attaching the Teensy microcontroller to the audio sh
 Measurement of the Overear device produced an average electrical usage of 65 milliamps at 3.7 volts, for a total power consumption of 242 milliwatts. Accordingly, we settled on a 1800 mAh Lithium-Polymer battery, which connects to the device using terminal screws. This produces 28 hours of battery power. 
 
 # Schematic & Diagrams 
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/fullschematic.png" alt="schematic"/>
+</p>
+Figure 2: Full schematic
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/pcb.png" alt="schematic"/>
+</p>
+Figure 3: Custom PCB design digital 
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/realpcb.png" alt="schematic"/>
+</p>
+Figure 4: Printed circuit board + Teensy soldered together
+3D models used for case to contain the electronic components:
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/casetop.png" alt="schematic"/>
+</p>
+Figure 5: Main Case top cover
+Dimensions: 110x60x11 mm (L x W x H)
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/casebottom.png" alt="schematic"/>
+</p>
+Figure 6: Main case bottom (all electronic components are housed inside except microphones)
+Dimensions: 110x60x28 mm (L x W x H)
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/mic.png" alt="schematic"/>
+</p>
+Figure 7: Microphone case cover
+Dimensions: 30x16x13.5 mm (L x W x H)
+Two copies are made, one for the left and one for the right microphone.
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/clip.png" alt="schematic"/>
+</p>
+Figure 8: Belt clip to connect with Main Case
+Note: CAD files can be accessed through the Github repository
+
 # System Enclosure 
 Assembly process:
 
@@ -68,8 +103,45 @@ Assembly process:
     3. Use super glue to connect the belt clip to the back of the Main case so the user can wear the device comfortably.
 7. Finally cover the Main Case with its cover and case the microphones. After all electronic components have been assembled and the software uploaded to the Teensy, the user should be able to use the OverEar device right away. 
 
+Inside view:
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/inside.png" alt="schematic"/>
+</p>
+Figure 9: Top view of the inside of device
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/insidescription.png" alt="schematic"/>
+</p>
+Figure 10: Item description of electronics inside the device
 
+# Assembled system
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/assembled.png" alt="schematic"/>
+</p>
+Figure 11: Full device overview
 
+Once the device is completely assembled it will contain the following elements inside the yellow case: Teensy controller, Audio shield, PCB, power adapter/charger, battery pack, ON/OFF switch, mute button, volume controller, and wires. Outside the device will be 2 microphones with connection to the Teensy inside. The case has 1 usb port to interface the Teensy, 1 usb port to charge the battery, and 1 audio jack to connect headphones. 
 
+Below are multiple images of the final device at different angles displaying all the elements that can be used:
 
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/side1.png" alt="schematic"/>
+</p>
+Figure 12: Side view 1 of the device
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/side2.png" alt="schematic"/>
+</p>
+Figure 13: Side view 2 of the device
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/side3.png" alt="schematic"/>
+</p>
+Figure 14: Side view 3 of the device
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/side4.png" alt="schematic"/>
+</p>
+Figure 15: Side view 4 of the device
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/hardware_figures/mics.png" alt="schematic"/>
+</p>
+Figure 16: Front and Side view of the microphones
+Each microphone should be attached to the earbuds or headphones that the user will use when operating with the OverEar device.
 
