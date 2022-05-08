@@ -38,6 +38,7 @@
    <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/file_flowchart.drawio.png" alt="flowchart"/>
 </p>
 
+Figure 1: Block diagram reflecting the processing functions and the file structure for OverEar. 
 # Developer/Build Tool Information
 The complete dev/build tool information is as follows
 - Teensy 3.5 with Teensy Audio Shield 3.X
