@@ -44,7 +44,8 @@ The complete installation of the project’s software stack is as follows
 https://www.pjrc.com/teensy/gui/ 
 
 This website is useful for visualizing the flow of audio signals in a Teensy due to the Audio System Design Tool. It allows the user to choose options such as an input, output, mixer, effects/filters, and modes of analysis. If one clicks the “Export” button, they are able to generate code based on the block diagram they created. For our project, we use an input of I2S, a modified delay (which contains our algorithm), SGTL5000 control and an I2S output. 
-Module information
-I2s2- receives 16-bit stereo audio using the I2S pins on the Teensy. This will stream both left and right signals. This same modu;e will be used again when outputting the audio data.
-Delay- this module is repurposed and modified to be the algorithm that we use for sound localization purposes. This modified module is where the main part of the cross correlation in the algorithm occurs to the left and right audio signals, by using the queue to grab those signals and compare their similarities using the cross correlation coefficient.
-SGTL5000 control- This control is used in the Teensy 3.X audio shield to control the timing of the overall system. This audio module has no inputs or outputs in the Audio System Design Tool. Separate I2S objects are used to send and receive audio data. I2S master mode objects must be used, because this object depends on Teensy to provide all I2S clocks. This object will control how the SGTL5000 will use the I2S audio streams.
+
+- Module information
+	- I2s2- receives 16-bit stereo audio using the I2S pins on the Teensy. This will stream both left and right signals. This same modu;e will be used again when outputting the audio data.
+	- Delay- this module is repurposed and modified to be the algorithm that we use for sound localization purposes. This modified module is where the main part of the cross correlation in the algorithm occurs to the left and right audio signals, by using the queue to grab those signals and compare their similarities using the cross correlation coefficient.
+	- SGTL5000 control- This control is used in the Teensy 3.X audio shield to control the timing of the overall system. This audio module has no inputs or outputs in the Audio System Design Tool. Separate I2S objects are used to send and receive audio data. I2S master mode objects must be used, because this object depends on Teensy to provide all I2S clocks. This object will control how the SGTL5000 will use the I2S audio streams.
