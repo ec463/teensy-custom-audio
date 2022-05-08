@@ -6,6 +6,25 @@
 - ```sound_seg.ino```
 	- The main file that calls other functions. Initializes the Teensy and the connections to microphones and earbuds. Within the file are also functions that implement the On/Off, mute, and volume control.
 	- The low frequency filter is implemented using a ladder filter for left and right inputs. Before the packet begins being processed by the other modules, low frequency sound is first eliminated. This processing is done to target the typical frequencies of background noise in a crowded room. The file uses existing libraries in the Teensy GUI to implement this. 
+	- The initialization of the device from the GUI implementation is as follows:
+		- Instantiate input and output objects representing the two microphones and two earbuds.
+			- AudioInputI2S            i2s1;
+			- AudioOutputI2S           i2s2;
+		- Instantiate an AudioEffectLocalize class called localize1
+			- AudioEffectLocalize      localize1;
+		- Instantiate the two ladder filters used by implement low-frequency filtering
+			- AudioFilterLadder        ladder1;
+			- AudioFilterLadder        ladder2;
+		- Establish connecting between objects
+			- AudioConnection          patchCord1(i2s1, 0, ladder1, 0);
+			- AudioConnection          patchCord2(i2s1, 1, ladder2, 0);
+			- AudioConnection          patchCord3(ladder1, 0, localize1, 0);
+			- AudioConnection          patchCord4(ladder2, 0, localize1, 1);
+			- AudioConnection          patchCord5(localize1, 0, i2s2, 0);
+			- AudioConnection          patchCord6(localize1, 0, i2s2, 1);
+		- Instantiate the Audio Shield:
+			- AudioControlSGTL5000     sgtl5000_1;
+
 	- ```effect_localize.cpp```
 		- ```AudioEffectLocalize()```: 
 			- The sound localization function. Takes a packet of sound data and calculates the correlation coefficient with ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples``` and multiplies each value with R squared. It then applies the absolute minimum function.
@@ -49,3 +68,16 @@ This website is useful for visualizing the flow of audio signals in a Teensy due
 	- I2s2- receives 16-bit stereo audio using the I2S pins on the Teensy. This will stream both left and right signals. This same modu;e will be used again when outputting the audio data.
 	- Delay- this module is repurposed and modified to be the algorithm that we use for sound localization purposes. This modified module is where the main part of the cross correlation in the algorithm occurs to the left and right audio signals, by using the queue to grab those signals and compare their similarities using the cross correlation coefficient.
 	- SGTL5000 control- This control is used in the Teensy 3.X audio shield to control the timing of the overall system. This audio module has no inputs or outputs in the Audio System Design Tool. Separate I2S objects are used to send and receive audio data. I2S master mode objects must be used, because this object depends on Teensy to provide all I2S clocks. This object will control how the SGTL5000 will use the I2S audio streams.
+		- Access to various properties of the SGTL5000 used in OverEar are as follows:
+			- sgtl5000_1.enable();
+				- Powers on the instantiation of SGTL5000 
+    		- sgtl5000_1.volume(0.5);
+    			- Sets the initial volume of the output post processing
+    		- sgtl5000_1.inputSelect(AUDIO_INPUT_LINEIN);
+    			- Initializes the input from the two microphones
+  			- sgtl5000_1.micGain(40);
+  				- Sets the initial gain for the amplitudes of incoming data from the two microphones
+    		- sgtl5000_1.dacVolumeRamp();
+    			- Enables the volume to increase at an exponential rate over a short period. This mode is better than linear since it avoids sudden and intense changes in volume. 
+    		- sgtl5000_1.dacVolumeRampDisable();
+    			- Disables the ramp. This property is used when the user decides to mute the device. 
