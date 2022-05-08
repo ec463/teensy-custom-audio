@@ -29,19 +29,20 @@ The complete dev/build tool information is as follows
 # Project Software Stack Installation Guide
 
 The complete installation of the project’s software stack is as follows
-	Install the Arduino IDE version ```1.8.13``` from the following website
-		https://www.arduino.cc/en/software
-	Install the Teensyduino add-on version ```1.56``` from the following website
-		https://www.pjrc.com/teensy/td_download.html
-	Install the Arduino Correlation Library version ```0.2.1``` using the Arduino Library Manager
-	Clone the Github repository
-		```git clone https://github.com/ec463/teensy-custom-audio.git```
-	Open the ```sound_seg.ino``` file in the Arduino IDE.
-		Compile and Upload to the Teensy
+- Install the Arduino IDE version ```1.8.13``` from the following website
+	- https://www.arduino.cc/en/software
+- Install the Teensyduino add-on version ```1.56``` from the following website
+	- https://www.pjrc.com/teensy/td_download.html
+- Install the Arduino Correlation Library version ```0.2.1``` using the Arduino Library Manager
+- Clone the Github repository
+	- ```git clone https://github.com/ec463/teensy-custom-audio.git```
+- Open the ```sound_seg.ino``` file in the Arduino IDE.
+	- Compile and Upload to the Teensy
 
 # Helpful Websites and Resources
 
 https://www.pjrc.com/teensy/gui/ 
+
 This website is useful for visualizing the flow of audio signals in a Teensy due to the Audio System Design Tool. It allows the user to choose options such as an input, output, mixer, effects/filters, and modes of analysis. If one clicks the “Export” button, they are able to generate code based on the block diagram they created. For our project, we use an input of I2S, a modified delay (which contains our algorithm), SGTL5000 control and an I2S output. 
 Module information
 I2s2- receives 16-bit stereo audio using the I2S pins on the Teensy. This will stream both left and right signals. This same modu;e will be used again when outputting the audio data.
