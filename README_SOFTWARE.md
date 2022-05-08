@@ -66,10 +66,12 @@ The complete installation of the project’s software stack is as follows
 # Helpful Websites and Resources
 
 To change the sampling rate of the device:
-	- Following healthy programming practices, the Teensy defines an exact constant value of ```44117.64706``` for the AUDIO_SAMPLE_RATE_EXACT and ```128``` for AUDIO_BLOCK_SAMPLES. For performance or optimization goals, it may be beneficial to lower the sampling rate and reduce processing. The path to AudioStream.h, which defines these two values can be found here:
-		-```/c/Program Files (x86)/Arduino/hardware/teensy/avr/cores/teensy3 ```
-		- AUDIO_SAMPLE_RATE_EXACT: The number of samples taken per second 
-		- AUDIO_BLOCK_SAMPLES: The number of samples packaged together as a block
+
+- Following healthy programming practices, the Teensy defines an exact constant value of ```44117.64706``` for the AUDIO_SAMPLE_RATE_EXACT and ```128``` for AUDIO_BLOCK_SAMPLES. For performance or optimization goals, it may be beneficial to lower the sampling rate and reduce processing. The path to AudioStream.h, which defines these two values can be found here:
+	-```/c/Program Files (x86)/Arduino/hardware/teensy/avr/cores/teensy3 ```
+	- AUDIO_SAMPLE_RATE_EXACT: The number of samples taken per second 
+	- AUDIO_BLOCK_SAMPLES: The number of samples packaged together as a block
+	
 https://www.pjrc.com/teensy/gui/ 
 
 This website is useful for visualizing the flow of audio signals in a Teensy due to the Audio System Design Tool. It allows the user to choose options such as an input, output, mixer, effects/filters, and modes of analysis. If one clicks the “Export” button, they are able to generate code based on the block diagram they created. For our project, we use an input of I2S, a modified delay (which contains our algorithm), SGTL5000 control and an I2S output. 
