@@ -3,15 +3,15 @@
 
 
 # Overview of Software Modules
-```sound_seg.ino```
-The main file that calls other functions. Initializes the Teensy and the connections to microphones and earbuds. Within the file are also functions that implement the On/Off, mute, and volume control.
-The low frequency filter is implemented using a ladder filter for left and right inputs. Before the packet begins being processed by the other modules, low frequency sound is first eliminated. This processing is done to target the typical frequencies of background noise in a crowded room. The file uses existing libraries in the Teensy GUI to implement this. 
-```effect_localize.cpp```
-```AudioEffectLocalize()```: 
-The sound localization function. Takes a packet of sound data and calculates the correlation coefficient with ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples``` and multiplies each value with R squared. It then applies the absolute minimum function.
-```xcorr.h```
-```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples)```: The cross correlation function. Determines the cross correlation coefficient between the left and right samples for one packet. The cross correlation coefficient increases the more similar the left and right packets are to each other and approaches zero otherwise. They only become similar if the sound values in the packet mathematically have the similar values at the same index within the packet. Thus sound sources from the 0th azimuth will cause the cross correlation coefficient to increase. 
-```void isolate_minimum(int16_t *left_samples, int16_t *right_samples, int samples)```: The isolated minimum function. Determines the absolute minimum value between the left and right of each sample. As sound gets picked up by the left and right microphones, sources emitting from the 0th azimuth (directly in front of the user) contribute equally amplitude. As the source moves from away from the center, a bias towards one microphone occurs. This module is meant to help cut away everything except what comes from the 0th azimuth. 
+- ```sound_seg.ino```
+	- The main file that calls other functions. Initializes the Teensy and the connections to microphones and earbuds. Within the file are also functions that implement the On/Off, mute, and volume control.
+	- The low frequency filter is implemented using a ladder filter for left and right inputs. Before the packet begins being processed by the other modules, low frequency sound is first eliminated. This processing is done to target the typical frequencies of background noise in a crowded room. The file uses existing libraries in the Teensy GUI to implement this. 
+	- ```effect_localize.cpp```
+		- ```AudioEffectLocalize()```: 
+			- The sound localization function. Takes a packet of sound data and calculates the correlation coefficient with ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples``` and multiplies each value with R squared. It then applies the absolute minimum function.
+		- ```xcorr.h```
+			- ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples)```: The cross correlation function. Determines the cross correlation coefficient between the left and right samples for one packet. The cross correlation coefficient increases the more similar the left and right packets are to each other and approaches zero otherwise. They only become similar if the sound values in the packet mathematically have the similar values at the same index within the packet. Thus sound sources from the 0th azimuth will cause the cross correlation coefficient to increase. 
+			- ```void isolate_minimum(int16_t *left_samples, int16_t *right_samples, int samples)```: The isolated minimum function. Determines the absolute minimum value between the left and right of each sample. As sound gets picked up by the left and right microphones, sources emitting from the 0th azimuth (directly in front of the user) contribute equally amplitude. As the source moves from away from the center, a bias towards one microphone occurs. This module is meant to help cut away everything except what comes from the 0th azimuth. 
 
 # Dependency Flowchart
 
@@ -21,10 +21,10 @@ The sound localization function. Takes a packet of sound data and calculates the
 
 # Developer/Build Tool Information
 The complete dev/build tool information is as follows
-	Teensy 3.5 with Teensy Audio Shield 3.X
-	Arduino IDE version ```1.8.13```
-	Teensyduino version ```1.56```
-	Arduino Correlation Library version ```0.2.1```
+- Teensy 3.5 with Teensy Audio Shield 3.X
+- Arduino IDE version ```1.8.13```
+- Teensyduino version ```1.56```
+- Arduino Correlation Library version ```0.2.1```
 
 # Project Software Stack Installation Guide
 
