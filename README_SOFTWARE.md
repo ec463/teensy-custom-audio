@@ -1,7 +1,13 @@
 # Software Report
 ## Guillermo Ao, Hannah Gold, Benjamin Li, Jonathan Ngo
 
+# Dependency Flowchart
 
+<p align="center">
+   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/file_flowchart.drawio.png" alt="flowchart"/>
+</p>
+
+Figure 1: Block diagram reflecting the processing functions and the file structure for OverEar. 
 # Overview of Software Modules
 - ```sound_seg.ino```
 	- The main file that calls other functions. Initializes the Teensy and the connections to microphones and earbuds. Within the file are also functions that implement the On/Off, mute, and volume control.
@@ -32,13 +38,7 @@
 			- ```float get_R_val(int16_t *left_samples, int16_t *right_samples, int samples)```: The cross correlation function. Determines the cross correlation coefficient between the left and right samples for one packet. The cross correlation coefficient increases the more similar the left and right packets are to each other and approaches zero otherwise. They only become similar if the sound values in the packet mathematically have the similar values at the same index within the packet. Thus sound sources from the 0th azimuth will cause the cross correlation coefficient to increase. 
 			- ```void isolate_minimum(int16_t *left_samples, int16_t *right_samples, int samples)```: The isolated minimum function. Determines the absolute minimum value between the left and right of each sample. As sound gets picked up by the left and right microphones, sources emitting from the 0th azimuth (directly in front of the user) contribute equally amplitude. As the source moves from away from the center, a bias towards one microphone occurs. This module is meant to help cut away everything except what comes from the 0th azimuth. 
 
-# Dependency Flowchart
 
-<p align="center">
-   <img src="https://github.com/ec463/teensy-custom-audio/blob/master/resources/file_flowchart.drawio.png" alt="flowchart"/>
-</p>
-
-Figure 1: Block diagram reflecting the processing functions and the file structure for OverEar. 
 # Developer/Build Tool Information
 The complete dev/build tool information is as follows
 - Teensy 3.5 with Teensy Audio Shield 3.X
