@@ -51,16 +51,25 @@ The complete dev/build tool information is as follows
 The complete installation of the project’s software stack is as follows
 - Install the Arduino IDE version ```1.8.13``` from the following website
 	- https://www.arduino.cc/en/software
+	- PLEASE NOTE: Using a version of the Arduino IDE that is not ```1.8.13``` will not function properly
 - Install the Teensyduino add-on version ```1.56``` from the following website
 	- https://www.pjrc.com/teensy/td_download.html
+	- PLEASE NOTE: Using a version of the Teensyduino that is not ```1.56``` will not function properly
 - Install the Arduino Correlation Library version ```0.2.1``` using the Arduino Library Manager
+	- PLEASE NOTE: Using a version of the Arduino Correlation Library that is not ```0.2.1``` will not function properly
 - Clone the Github repository
 	- ```git clone https://github.com/ec463/teensy-custom-audio.git```
 - Open the ```sound_seg.ino``` file in the Arduino IDE.
 	- Compile and Upload to the Teensy
+	- Press Program on Teensy window
 
 # Helpful Websites and Resources
 
+To change the sampling rate of the device:
+	- Following healthy programming practices, the Teensy defines an exact constant value of ```44117.64706``` for the AUDIO_SAMPLE_RATE_EXACT and ```128``` for AUDIO_BLOCK_SAMPLES. For performance or optimization goals, it may be beneficial to lower the sampling rate and reduce processing. The path to AudioStream.h, which defines these two values can be found here:
+		-```/c/Program Files (x86)/Arduino/hardware/teensy/avr/cores/teensy3 ```
+		- AUDIO_SAMPLE_RATE_EXACT: The number of samples taken per second 
+		- AUDIO_BLOCK_SAMPLES: The number of samples packaged together as a block
 https://www.pjrc.com/teensy/gui/ 
 
 This website is useful for visualizing the flow of audio signals in a Teensy due to the Audio System Design Tool. It allows the user to choose options such as an input, output, mixer, effects/filters, and modes of analysis. If one clicks the “Export” button, they are able to generate code based on the block diagram they created. For our project, we use an input of I2S, a modified delay (which contains our algorithm), SGTL5000 control and an I2S output. 
